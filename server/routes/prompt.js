@@ -1,11 +1,12 @@
 const express = require('express');
 const {readFile, appendFile, writeFile} = require('fs').promises;
 const {Configuration, OpenAIApi} = require('openai');
+const {OpenAI} = require("../credentials/OpenAI");
 
 const promptRouter = express.Router();
 
 const config = new Configuration({
-    apiKey: 'API-KEY',
+    apiKey: OpenAI.apiKey,
 });
 
 const openai = new OpenAIApi(config);
