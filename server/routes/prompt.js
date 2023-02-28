@@ -1,7 +1,7 @@
 const express = require('express');
 const {readFile, appendFile, writeFile} = require('fs').promises;
 const {Configuration, OpenAIApi} = require('openai');
-const {OpenAI} = require("../credentials/OpenAI");
+const {OpenAI} = require("../secrets/OpenAI");
 
 const promptRouter = express.Router();
 
