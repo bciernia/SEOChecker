@@ -10,9 +10,9 @@ const config = new Configuration({
 
 const openai = new OpenAIApi(config);
 
-const runPrompt = async () => {
+const runPrompt = async (prompt) => {
     const model = "text-davinci-003";
-    const prompt = "Opowiedz żart o cyganach";
+    // const prompt = "Opowiedz żart o cyganach";
 
     const response = await openai.createCompletion({
         model: model,
@@ -31,12 +31,14 @@ const getPromptFromFile = async () => {
 
 promptRouter
 
-    .get('/api', async (req, res) => {
-        const fileContent = await getPromptFromFile();
+    .post('/api', async (req, res) => {
+        // const fileContent = await getPromptFromFile();
 
-        const question = req.params.question;
+        const question = req.body.question;
 
-        res.send(question);
+        const openaiAnswer = await runPrompt(question);
+
+        res.send(openaiAnswer);
     })
 
     .get('/openai', async(req, res) => {
