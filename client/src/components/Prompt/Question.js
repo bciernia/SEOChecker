@@ -1,25 +1,21 @@
-import {useState} from "react";
+import {useRef} from "react";
 
 import './Question.css'
 
 function Question(props) {
-    const [userQuestion, setUserQuestion] = useState('');
+    const inputRef = useRef(null);
 
-    const askQuestion = event => {
+    const onQuestionSubmit = event => {
         event.preventDefault();
 
-        props.question(userQuestion);
-        setUserQuestion('');
-    }
-
-    const userQuestionChangeHandler = (event)  =>{
-        setUserQuestion(event.target.value);
+        props.onQuestionSubmit(inputRef.current.value);
+        inputRef.current.value = '';
     }
 
     return (
-        <form className="question-form" onSubmit={askQuestion}>
+        <form className="question-form" onSubmit={onQuestionSubmit}>
             <label>Ask a question</label>
-            <input className="question-form-input" type="text" value={userQuestion} onChange={userQuestionChangeHandler} />
+            <input className="question-form-input" type="text" ref={inputRef}/>
             <button className="question-form-btn" type="submit">Ask</button>
         </form>
     );

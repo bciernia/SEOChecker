@@ -13,7 +13,6 @@ const openai = new OpenAIApi(config);
 
 const runPrompt = async (prompt) => {
     const model = "text-davinci-003";
-    // const prompt = "Opowiedz żart o cyganach";
 
     const response = await openai.createCompletion({
         model: model,
@@ -37,9 +36,9 @@ promptRouter
 
         const question = req.body.question;
 
-        const openaiAnswer = await runPrompt(question);
+        // const openaiAnswer = await runPrompt(question);
 
-        res.send(openaiAnswer);
+        res.send({question});
     })
 
     .get('/openai', async(req, res) => {
