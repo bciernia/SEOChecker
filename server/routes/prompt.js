@@ -36,9 +36,9 @@ promptRouter
 
         const question = req.body.question;
 
-        // const openaiAnswer = await runPrompt(question);
+        const openaiAnswer = await runPrompt(question);
 
-        res.send({question});
+        res.send({question: openaiAnswer.prompt});
     })
 
     .get('/openai', async(req, res) => {
